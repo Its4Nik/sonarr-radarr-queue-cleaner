@@ -17,3 +17,21 @@ to use in a docker container, copy folder to the machine hosting your docker, `C
 1# `docker build -t media-cleaner .`
 
 2#. `docker run -d --name media-cleaner -e SONARR_API_KEY='123456' -e RADARR_API_KEY='123456' -e SONARR_URL='http://sonarr:8989' -e RADARR_URL='http://radarr:7878' -e API_TIMEOUT='600' media-cleaner`
+
+# Installation
+
+```yaml
+services:
+  sonarr-radarr-queue-cleaner:
+    image: ghcr.io/its4nik/sonarr-radarr-queue-cleaner:latest
+    container_name: media-cleaner
+    environment:
+      - SONARR_API_KEY="XXX"
+      - SONARR_URL="http://XXX"
+      - RADARR_API_KEY="XXX"
+      - RADARR_URL="http://XXX"
+      - API_TIMEOUT="600" # in seconds
+    depends_on:
+      - sonarr # enter your sonarr instance name here
+      - radarr # enter your radarr instance name here
+```
